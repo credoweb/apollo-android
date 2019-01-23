@@ -131,6 +131,10 @@ fun <T> ApolloSubscriptionCall<T>.toChannel(capacity: Int = Channel.UNLIMITED): 
         cancel()
     }
     execute(object : ApolloSubscriptionCall.Callback<T> {
+        override fun onTerminated() {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
         override fun onResponse(response: Response<T>) {
             channel.offer(response)
         }
@@ -174,5 +178,3 @@ fun ApolloPrefetch.toJob(): Job {
 
     return deferred
 }
-
-
